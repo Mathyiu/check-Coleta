@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{#Vou pegar a parte do inicio de layout.html#}
+{#comentario#}
+
+{% set pageId = "page-search-results"%}
+
+{% block title %}
+    <title>Resultado da pesquisa</title>
+{% endblock title %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/styles/search-results.css">
+{% endblock styles %}
+
+{% block content %}
+    {% include "partials/page-header.html" %}
+    <!-- Já que o header é o mesmo para os três coloquei tudo em um só lugar-->
+    <!-- Posso usar isso para deixar mais facil de modificar dps-->
+    <main>
+
+    {% if total > 0 %}
+        <h4>
+            <strong>{{ total }} Pontos </strong> encontrados
+            {# vai mostrar o total de pontos encontrados#}
+        </h4>
+
+        <div class="cards">
+
+           {% for place in places %}
+               
+                <div class="card">
+                    <img src="{{ place.image }}" alt="{{ place.name }}">
+                    <h1>{{ place.name }}</h1>
+                    <h3>{{ place.items }}</h3>
+
+                    <p>
+                        {{ place.city }}, {{ place.state }}
+                        <br/>
+                        <!-- <br/> quebra a linha-->
+                        {{ place.adress }}<br/>
+                        {{ place.number }}
+                    </p>
+                </div>
+
+           {% endfor %}
+
+        
+        </div>
+
+    {%else%}
+        <h4><strong>Nenhum</strong> local encontrado</h4>
+    {% endif %}
+
+
+    </main>
+{% endblock content %}

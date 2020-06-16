@@ -1,0 +1,146 @@
+{% extends "layout.html" %}
+{#Vou pegar a parte do inicio de layout.html#}
+{#comentario#}
+
+{% set pageId = "page-create-point"%}
+
+{#como criei aqui um block title ele vai
+sobrescrever o titulo lá no layout, se não tiver
+a block title ele vai colocar ecoleta #}
+{% block title %}
+    <title>Criar um ponto de coleta</title>
+{% endblock title %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/styles/create-point.css">
+    <link rel="stylesheet" href="/styles/modal.css">
+{% endblock styles %}
+
+{% block content %}
+    {% include "partials/page-header.html" %}
+    
+    <form action="/savepoint" method = "POST">
+
+        <h1>Cadastro do ponto de Coleta</h1>
+
+        <fieldset>
+            <!--Deixar o codigo mais facil de ler, campo para preencher... fieldset-->
+            <legend>
+                <h2>Dados da entidade</h2>
+            </legend>
+            
+
+            <div class="field-group">
+                <div class="field">
+                    <label for="name">Nome da entidade</label>
+                    <input type="text" name="name" required="required">
+                    <!-- deixar o campo como obrigatorio -->
+                </div>
+                <div class="field">
+                    <label for="name">Foto da entidade</label>
+                    <input type="url" 
+                    name="image"
+                    placeholder = "http://"  
+                    required="required">
+                    <!-- deixar o campo como obrigatorio -->
+                </div>
+            </div>
+
+            <div class="field-group">
+                <div class="field">
+                    <label for="address">Endereço</label>
+                    <input type="text" name="adress" required="required">
+                </div>
+                <!--Posso usar o *2 para criar 2 div, * serve como multiplicador-->
+                <div class="field">
+                    <div class="number">Número/Complemento</div>
+                    <input type="text" name="number" required="required">
+                </div>
+            </div>
+
+            <div class="field-group">
+                <div class="field">
+                    <label for="state">Estado</label>
+                    <select name="uf" required="required">
+                        <option value="">Selecione o Estado</option>
+                    </select>
+
+                    <input type="hidden" name="state">
+                </div>
+
+                <div class="field">
+                    <div class="city">Cidade</div>
+                    <select name="city" disabled="disabled" required="required">
+                        <option value="">Selecione a Cidade</option>
+                    </select>
+                </div>
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                <h2>Itens de coleta</h2>
+                <span>Selecione um ou mais itens abaixo</span>
+            </legend>
+
+            <div class="items-grid">
+                <!--Class pq são varios -->
+                <li data-id="Lâmpadas">
+                    <img src="./assets/lampadas.svg" alt="Lampadas">
+                    <span>Lâmpadas</span>
+                </li>
+                <!--LI geralmente é usada para fazer listas-->
+
+                <li data-id="Pilhas e Baterias">
+                    <img src="./assets/baterias.svg" alt="Pilhas e Baterias">
+                    <span>Pilhas e Baterias</span>
+                </li>
+
+                <li data-id="Papéis e Papelão">
+                    <img src="./assets/papeis-papelao.svg" alt="Papéis e Papelão">
+                    <span>Papéis e Papelão</span>
+                </li>
+
+                <li data-id="Resíduos Eletrônicos">
+                    <img src="./assets/eletronicos.svg" alt="Resíduos Eletrônicos">
+                    <span>Resíduos Eletrônicos</span>
+                </li>
+
+                <li data-id="Resíduos Orgânicos">
+                    <img src="./assets/organicos.svg" alt="Resíduos Orgânicos">
+                    <span>Resíduos Orgânicos</span>
+                </li>
+
+                <li data-id="Óleo de cozinha">
+                    <img src="./assets/oleo.svg" alt="Óleo de cozinha">
+                    <span>Óleo de cozinha</span>
+                </li>
+            </div>
+
+            <input type="hidden" name="items" value="">
+        </fieldset>
+
+        <button type="submit">Cadastrar ponto de coleta</button>
+    </form>
+
+{% endblock content %}
+
+    {% block modal %}
+        {% if saved %} 
+            {% include "partials/point-created.html" %}
+            {# Posso usar isso para deixar mais facil de modificar dps#}
+        {% endif %}
+   
+    {% endblock modal %}
+
+
+<div id="page-create-point">
+
+    {% include "partials/page-header.html" %}
+    <!-- Já que o header é o mesmo para os três coloquei tudo em um só lugar-->
+    <!-- Posso usar isso para deixar mais facil de modificar dps-->
+
+    {% block scripts %}
+        <script src="/scripts/create-point.js"></script>
+    {% endblock scripts %}

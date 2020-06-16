@@ -1,0 +1,37 @@
+{% extends "layout.html" %} {#Vou pegar a parte do inicio de layout.html#}
+{#comentario#}
+
+{% set pageId = "page-home"%}
+        {% block styles %}
+            <link rel="stylesheet" href="/styles/home.css">
+            <link rel="stylesheet" href="/styles/modal.css">
+        {% endblock styles %}
+
+{% block content %} 
+    <div class="content">
+
+        <header> {#cabeçalho#}
+            <img src="/assets/check.svg" alt="Logomarca">
+    
+            <a href="/create-point">
+                <span></span>
+                Cadastre um ponto de coleta
+            </a>
+        </header>
+
+        <main>               
+            <h1>Seu marketplace de coletas de residuos</h1>
+            <p>Ajudamos as pessoas a encontrarem um ponto de coleta da maneira mais facil.</p>
+            <a href="#"><span></span><strong>Pesquisar pontos de coleta</strong></a>
+        </main>  
+    </div>
+{% endblock content %}
+
+{% block modal %}
+    {% include "partials/modal.html" %}
+   {# Posso usar isso para deixar mais facil de modificar dps#}
+{% endblock modal %}
+
+{% block scripts %}
+<script src="/scripts/index.js">// source de fonte</script>
+{% endblock scripts %}

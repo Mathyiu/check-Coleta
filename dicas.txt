@@ -1,0 +1,12 @@
+para criar um servidor foram criadas duas pastas
+uma public --> que é o que as pessoas vão ter acesso
+uma src --> que vai abrigar o meu servidor (onde criei o arquivo server.js) 
+src --> views --> vai abrigar os meus HTML
+
+para criar o servidor instalei o express package(modulo)
+e usei tb o package.json para criar(npm install -y)
+
+
+template engine torna o HTML de uma liguagem de marcação em algo mais inteligente, pois
+vou poder ter funções, if e else, variaveis, é um motor que vai ser usado
+para trabalhar com o layout
