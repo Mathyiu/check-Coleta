@@ -100,14 +100,14 @@
 
 /*Isto é para o point created*/
 
-#modal .point .content{
+#modal.point .content{
     display: flex;
     flex-direction: column;
     align-items: center;
 
 }
 
-#modal .point h1{
+#modal.point h1{
     color: white;
     margin-top: 32px;
 }
